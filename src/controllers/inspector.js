@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const Inspector = require("../models/Inspector");
+const Report = require("../models/Report");
 
 exports.register = (req, res, next) => {
   Inspector.find({
@@ -40,11 +41,32 @@ exports.login = (req, res) => {
       "secret"
     );
     res.status(200).json({
-      token: token
+      token: token,
+      full_name: req.inspector.fullname
     });
   } else {
-      res.status(401).json({
-          message: "Auth Failed"
-      })
+    res.status(401).json({
+      message: "Auth Failed"
+    });
   }
+};
+
+exports.report = (req, res) => {
+  const report = new Report({
+    _id: new mongoose.Types.ObjectId(),
+    ownerfullname: req.body.ownerfullname,
+    ownerphone: req.body.ownerphone,
+    address: req.body.address,
+    buildingarea: req.body.buildingarea,
+    groundarea: req.body.groundarea,
+    longitude: req.body.longitude,
+    latitude: req.body.latitude,
+    request: req.files["request"][0].filename,
+    photos: req.files["photos"].map(p => p.filename),
+    inspector: req.inspector._id,
+    created_at: Date.now()
+  });
+  report.save().then(() => {
+    res.status(201).json({ message: "Report accepted" });
+  });
 };

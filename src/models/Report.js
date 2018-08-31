@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const requestSchema = mongoose.Schema({
+const reportSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
   ownerfullname: {
     type: String,
@@ -49,4 +49,4 @@ const requestSchema = mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model("Request", requestSchema);
+module.exports = mongoose.model("Report", reportSchema);
