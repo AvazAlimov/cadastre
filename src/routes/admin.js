@@ -17,4 +17,6 @@ router.get("/load/report", checkAuth, controller.loadReports);
 
 router.get("/report/:id", checkAuth, controller.getReport);
 
+router.get("/inspector/:id", checkAuth, controller.getInspector);
+
 module.exports = router;

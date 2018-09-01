@@ -104,7 +104,6 @@ exports.loadReports = (req, res) => {
 };
 
 exports.getReport = (req, res) => {
-  console.log(req);
   Report.find({
     _id: req.params.id
   }).then(reports => {
@@ -115,3 +114,15 @@ exports.getReport = (req, res) => {
     }
   });
 };
+
+exports.getInspector = (req, res) => {
+  Inspector.find({
+    _id: req.params.id
+  }).then(reports => {
+    if (reports.length > 0) {
+      res.status(200).json(reports[0]);
+    } else {
+      res.status(404).json({ message: "not found" });
+    }
+  });
+}
