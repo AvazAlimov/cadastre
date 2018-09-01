@@ -10,7 +10,7 @@ const storage = multer.diskStorage({
   },
   filename: function(req, file, cb) {
     console.log(req.inspector);
-    cb(null, req.inspector.id + "_" + file.fieldname + "_" + Date.now());
+    cb(null, req.inspector.id + "_" + file.fieldname + "_" + Date.now() + ".jpg");
   }
 });
 const upload = multer({
