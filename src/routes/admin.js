@@ -13,4 +13,6 @@ router.post("/delete/inspector", checkAuth, controller.deleteInspector);
 
 router.get("/load/inspector", checkAuth, controller.loadInspectors);
 
+router.get("/load/report", checkAuth, controller.loadReports);
+
 module.exports = router;

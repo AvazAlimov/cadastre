@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Admin = require("../models/Admin");
 const Inspector = require("../models/Inspector");
+const Report = require("../models/Report");
 
 exports.signup = (req, res) => {
   Admin.find({
@@ -92,6 +93,12 @@ exports.deleteInspector = (req, res) => {
 
 exports.loadInspectors = (req, res) => {
   Inspector.find().then(inspectors => {
+    res.status(200).json(inspectors);
+  });
+};
+
+exports.loadReports = (req, res) => {
+  Report.find().then(inspectors => {
     res.status(200).json(inspectors);
   });
 };
