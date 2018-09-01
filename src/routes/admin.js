@@ -7,6 +7,8 @@ router.post("/signup", controller.signup);
 
 router.post("/login", controller.login);
 
-router.post("/add/inspector", checkAuth, controller.addInspector)
+router.post("/add/inspector", checkAuth, controller.addInspector);
+
+router.get("/load/inspector", checkAuth, controller.loadInspectors);
 
 module.exports = router;

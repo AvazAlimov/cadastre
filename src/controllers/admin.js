@@ -81,3 +81,9 @@ exports.addInspector = (req, res) => {
       }
     });
 };
+
+exports.loadInspectors = (req, res) => {
+  Inspector.find().then(inspectors => {
+    res.status(200).json(inspectors);
+  });
+};
