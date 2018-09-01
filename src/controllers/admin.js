@@ -82,6 +82,14 @@ exports.addInspector = (req, res) => {
     });
 };
 
+exports.deleteInspector = (req, res) => {
+  Inspector.remove({
+    _id: req.body._id
+  }).then(() => {
+    res.status(200).json({ message: "Deleted" });
+  });
+};
+
 exports.loadInspectors = (req, res) => {
   Inspector.find().then(inspectors => {
     res.status(200).json(inspectors);

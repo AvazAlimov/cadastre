@@ -9,6 +9,8 @@ router.post("/login", controller.login);
 
 router.post("/add/inspector", checkAuth, controller.addInspector);
 
+router.post("/delete/inspector", checkAuth, controller.deleteInspector);
+
 router.get("/load/inspector", checkAuth, controller.loadInspectors);
 
 module.exports = router;
