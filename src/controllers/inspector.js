@@ -63,7 +63,7 @@ exports.report = (req, res) => {
     latitude: req.body.latitude,
     request: req.files["request"][0].filename,
     photos: req.files["photos"].map(p => p.filename),
-    inspector: req.inspector._id,
+    inspector: req.inspector.id,
     created_at: Date.now()
   });
   report.save().then(() => {
