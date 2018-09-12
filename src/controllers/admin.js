@@ -98,21 +98,35 @@ exports.loadInspectors = (req, res) => {
 };
 
 exports.loadReports = (req, res) => {
-  Report.find().then(inspectors => {
+  Report.find({
+    number: { $exists: true, $ne: null }
+  }).then(inspectors => {
+    res.status(200).json(inspectors);
+  });
+};
+
+exports.loadConfirmedReports = (req, res) => {
+  Report.find({
+    number: { $exists: false }
+  }).then(inspectors => {
     res.status(200).json(inspectors);
   });
 };
 
 exports.getReport = (req, res) => {
-  Report.find({
-    _id: req.params.id
-  }).then(reports => {
-    if (reports.length > 0) {
-      res.status(200).json(reports[0]);
-    } else {
-      res.status(404).json({ message: "not found" });
-    }
-  });
+  if (req.params.id)
+    Report.find({
+      _id: req.params.id
+    }).then(reports => {
+      if (reports.length > 0) {
+        res.status(200).json(reports[0]);
+      } else {
+        res.status(404).json({ message: "not found" });
+      }
+    });
+  else {
+    res.status(404).json({ message: "not found" });
+  }
 };
 
 exports.getInspector = (req, res) => {
