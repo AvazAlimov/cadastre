@@ -125,4 +125,32 @@ exports.getInspector = (req, res) => {
       res.status(404).json({ message: "not found" });
     }
   });
-}
+};
+
+exports.confirmReport = (req, res) => {
+  console.log(req);
+  Report.update(
+    {
+      _id: req.body.id
+    },
+    {
+      $set: {
+        number: req.body.number,
+        actuality: req.files["actuality"],
+        document: req.files["document"],
+        application: req.files["application"],
+        sentence: req.files["sentence"],
+        mib: req.files["mib"],
+        post_photos: req.files["post_photos"].map(p => p.filename)
+      }
+    }
+  )
+    .exec()
+    .then(() => res.status(200).json({ message: "updated" }))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
+};

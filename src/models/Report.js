@@ -39,6 +39,29 @@ const reportSchema = mongoose.Schema({
       type: String
     }
   ],
+  number: {
+    type: String
+  },
+  actuality: {
+    type: String
+  },
+  document: {
+    type: String
+  },
+  application: {
+    type: String
+  },
+  sentence: {
+    type: String
+  },
+  mib: {
+    type: String
+  },
+  post_photos: [
+    {
+      type: String
+    }
+  ],
   inspector: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Inspector"

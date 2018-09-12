@@ -12,7 +12,7 @@ mongoose.connect(
 mongoose.Promise = global.Promise;
 
 const app = express();
-app.use(express.static(__dirname + "./client"));
+app.use(express.static(__dirname + "/client"));
 app.use("/uploads", express.static("uploads"));
 app.use(morgan("combined"));
 app.use(bodyParser.urlencoded({ extended: false }));
