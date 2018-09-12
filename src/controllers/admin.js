@@ -128,7 +128,6 @@ exports.getInspector = (req, res) => {
 };
 
 exports.confirmReport = (req, res) => {
-  console.log(req);
   Report.update(
     {
       _id: req.body.id
