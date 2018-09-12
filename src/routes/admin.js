@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
   filename: function(req, file, cb) {
     cb(
       null,
-      file.fieldname + "_" + Date.now() + mime.getExtension(file.mimetype)
+      file.fieldname + "_" + Date.now() + "." + mime.getExtension(file.mimetype)
     );
   }
 });
@@ -48,7 +48,7 @@ router.post(
     { name: "application", maxCount: 1 },
     { name: "sentence", maxCount: 1 },
     { name: "mib", maxCount: 1 },
-    { name: "post_photos", maxCount: 20 }
+    { name: "post_photos[]", maxCount: 20 }
   ]),
   controller.confirmReport
 );

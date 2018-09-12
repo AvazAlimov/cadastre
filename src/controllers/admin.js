@@ -135,19 +135,20 @@ exports.confirmReport = (req, res) => {
     {
       $set: {
         number: req.body.number,
-        actuality: req.files["actuality"],
-        document: req.files["document"],
-        application: req.files["application"],
-        sentence: req.files["sentence"],
-        mib: req.files["mib"],
-        post_photos: req.files["post_photos"].map(p => p.filename)
+        actuality: req.files["actuality"][0].filename,
+        document: req.files["document"][0].filename,
+        application: req.files["application"][0].filename,
+        sentence: req.files["sentence"][0].filename,
+        mib: req.files["mib"][0].filename,
+        post_photos: req.files["post_photos[]"]
+          ? req.files["post_photos[]"].map(p => p.filename)
+          : null
       }
     }
   )
     .exec()
     .then(() => res.status(200).json({ message: "updated" }))
     .catch(err => {
-      console.log(err);
       res.status(500).json({
         error: err
       });
